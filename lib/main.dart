@@ -27,6 +27,14 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
+
+  void getNewRandomWord() {
+    // Change state and...
+    current = WordPair.random();
+
+    // notify the changes to listeners.
+    notifyListeners();
+  }
 }
 
 class MyHomePage extends StatelessWidget {
@@ -39,6 +47,9 @@ class MyHomePage extends StatelessWidget {
         children: [
           Text('A random idea:'),
           Text(appState.current.asLowerCase),
+          ElevatedButton(
+              onPressed: () => {appState.getNewRandomWord()},
+              child: Text('Get new random word'))
         ],
       ),
     );
